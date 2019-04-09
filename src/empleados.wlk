@@ -6,9 +6,11 @@ object galvan {
 	var sueldo = 15000
 	method sueldo() { return sueldo }
 	method sueldo(nuevoValor) { sueldo = nuevoValor }
+	method cobrarSueldo(){}
 }
 
 object baigorria {
+	var toTalDineroCobrado = 0
 	var cantidadEmpanadasVendidas = 100
 	var montoPorEmpanada = 15
 	
@@ -17,10 +19,18 @@ object baigorria {
 	}
  	
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada
+	method cobrarSueldo(){toTalDineroCobrado  += self.sueldo()} 
+	method toTalDineroCobrado(){
+		return toTalDineroCobrado
+	}
 }
 
 object gimenez {
 	var dinero = 300000
 	method dinero() { return dinero }
-	method pagarA( empleado ) { dinero -= empleado.sueldo() }
+	method pagarA( empleado ) {
+	dinero -= empleado.sueldo()
+	empleado.cobrarSueldo()
+		}
 }
+
